@@ -1,0 +1,567 @@
+@font-face {
+    font-family: 'Scriptina';
+    src: url('font/scriptin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('font/fredoka-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('font/fredoka-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FredokaSemiExpanded';
+    src: url('font/fredoka_semiexpanded-regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --card-size: 1080px;
+    --primary-blue: #0047AB;
+    /* Fallback blue */
+    --light-bg: #F5F5F7;
+    --text-dark: #333;
+    --text-gray: #666;
+    --text-white: #fff;
+    --font-script: 'Great Vibes', cursive;
+    --font-main: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #222;
+    color: var(--text-dark);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* --- Controls Panel --- */
+.controls {
+    width: 320px;
+    background: #fff;
+    padding: 1.5rem;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.controls header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.page-switcher {
+    margin-bottom: 1rem;
+}
+
+.switch-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #5f0ef5;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.switch-btn:hover {
+    background: #5206df;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.control-group input,
+.control-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+.control-group input:focus,
+.control-group textarea:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+}
+
+.half-width {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.half-width .input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.file-upload-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.file-upload-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-custom {
+    display: block;
+    padding: 0.75rem;
+    border: 1px dashed #ccc;
+    background: #f9f9f9;
+    text-align: center;
+    border-radius: 4px;
+    color: #666;
+    pointer-events: none;
+}
+
+.actions button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.actions button:hover {
+    background: #003380;
+}
+
+/* --- Image Editing Controls --- */
+.image-editing-section {
+    border-top: 2px solid #e0e0e0;
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+}
+
+.slider-control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.slider-control label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #666;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.slider-wrapper input[type="range"] {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.slider-wrapper input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.slider-wrapper input[type="range"]::-webkit-slider-thumb:hover {
+    background: #003380;
+    transform: scale(1.1);
+}
+
+.slider-wrapper input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.slider-wrapper input[type="range"]::-moz-range-thumb:hover {
+    background: #003380;
+    transform: scale(1.1);
+}
+
+.slider-wrapper span {
+    min-width: 45px;
+    text-align: right;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.reset-btn {
+    width: 100%;
+    padding: 0.65rem;
+    background: #f5f5f5;
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+}
+
+.reset-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* --- Preview Area --- */
+.preview-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    padding: 1rem;
+    overflow: auto;
+}
+
+#canvas-container {
+    /* Scale the preview to fit the screen */
+    transform-origin: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Canvas Preview Styling */
+#image-canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    transform-origin: center center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+/* --- The Card Design (1080x1080) --- */
+.card {
+    width: 1080px;
+    height: 1080px;
+    background-color: var(--light-bg);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+}
+
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Default background fallback if image missing */
+    background: linear-gradient(135deg, #f0f0f0 40%, var(--primary-blue) 40%);
+    /* Try to load the image if it exists */
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+/* Left Content Layout */
+.left-content {
+    position: relative;
+    z-index: 1;
+    width: 50%;
+    flex: 0 0 50%;
+    /* Enforce width for html2canvas */
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    width: 74px;
+    /* Adjust based on svg size */
+    margin-bottom: 0px;
+}
+
+.greeting-block {
+    margin-bottom: 20px;
+}
+
+.happy-text {
+    width: 191px;
+    height: 268px;
+    font-family: 'Scriptina', var(--font-script), cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 78px;
+    display: flex;
+    align-items: flex-start;
+    color: #8D8D8D;
+}
+
+
+.anniversary-title {
+    margin-top: -30px;
+    background: linear-gradient(90deg, #0A6BC0 0%, #069EE1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.year-number {
+    font-size: 73px;
+    font-weight: 700;
+}
+
+.year-suffix {
+    font-size: 60px;
+    font-weight: 400;
+}
+
+.work-anniversary-text {
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.1;
+
+}
+
+.quote-block {
+    margin-top: 10px;
+    max-width: 370px;
+    /* Enforced constraint */
+}
+
+#disp-quote {
+    font-family: var(--font-main);
+    font-size: 26px;
+    color: #8D8D8D;
+    line-height: 1.5;
+
+}
+
+/* Right Content Layout */
+.right-content {
+    position: relative;
+    z-index: 1;
+    width: 50%;
+    flex: 0 0 50%;
+    /* Enforce width */
+    /*display: flex;
+    flex-direction: column;
+    justify-content: center;*/
+    align-items: center;
+    padding-top: 62px;
+}
+
+/* Polaroid Style */
+.polaroid-wrapper {
+    position: relative;
+    transform: rotate(12.43deg);
+    /* Tilted look */
+    margin-bottom: 48px;
+    width: 552px;
+    margin-left: -54px;
+    z-index: 2;
+}
+
+.polaroid-frame {
+    background: #fff;
+    padding: 24px 24px 88px 24px;
+    /* Large bottom padding for name */
+    box-shadow: -30px 30px 30px rgba(3, 32, 83, 0.45);
+    width: 552px;
+    margin-top: 32px;
+    /* Fixed polaroid size */
+}
+
+.photo-area {
+    width: 100%;
+    height: 500px;
+    /* Aspect ratio for photo */
+    background: #eee;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.photo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Upload Hover Effect */
+.upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.photo-area:hover .upload-overlay {
+    opacity: 1;
+}
+
+.placeholder-text {
+    color: #aaa;
+    font-size: 1.5rem;
+    position: absolute;
+}
+
+.caption-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 552px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#disp-name-polaroid {
+    font-family: var(--font-main);
+    /* Or script if preferred, ref looks like specialized font */
+    /* Ref actually looks like clean sans-serif but customized. Let's stick to Poppins Light/Reg */
+    font-family: 'FredokaSemiExpanded';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 38px;
+    color: #8D8D8D;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+
+/* Employee Details (Blue Section) */
+.details-block {
+    text-align: left;
+    color: white;
+    width: 100%;
+    padding-left: 0px;
+    /* Align with layout */
+}
+
+#disp-designation {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: -8px;
+    letter-spacing: 1px;
+}
+
+#disp-department {
+    font-size: 42px;
+    font-weight: 200;
+    margin-bottom: 2px;
+    opacity: 0.8;
+}
+
+.doj-row {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+/* Footer Link */
+.card-footer {
+    position: absolute;
+    bottom: 32px;
+    right: 40px;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #8D8D8D;
+    /* Or white depending on bg overlap */
+    z-index: 2;
+}
+
+/* If background takes over, footer needs to adjust */
+/* Assuming the blue shape from Canva is part of background.png or generated via CSS */
+/* Let's refine the background generation via CSS to match the cutting line if image is missing */
+
+/* If background.png exists, it will override this gradient */

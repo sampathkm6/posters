@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Poster Generator</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="welcome.css">
+    <!-- html2canvas for downloading the image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Controls Panel -->
+        <aside class="controls">
+            <header>
+                <div class="page-switcher" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <a href="index.html" class="switch-btn">Switch to Anniversary</a>
+                    <a href="birthday.html" class="switch-btn">Switch to Birthday</a>
+                </div>
+                <h1>Welcome Generator</h1>
+            </header>
+
+            <div class="control-group">
+                <label for="input-heading">Heading Text</label>
+                <input type="text" id="input-heading" value="Let us Welcome" placeholder="e.g. Let us Welcome">
+            </div>
+
+            <div class="control-group">
+                <label for="input-greeting">Welcome Message</label>
+                <textarea id="input-greeting" rows="4">This is to inform you all Ms. Shanthi P joined our team today as Analyst for the Search Engine Optimization department.</textarea>
+            </div>
+
+            <div class="control-group">
+                <label for="input-experience">Experience / Details</label>
+                <textarea id="input-experience" rows="3">Ms. Shanthi holds 1+ years of experience in SEO. Previously she worked at Infinix360.</textarea>
+            </div>
+
+            <div class="control-group">
+                <label for="input-email">Email ID</label>
+                <input type="text" id="input-email" value="shanthi.p@kudometrics.com" placeholder="e.g. shanthi.p@kudometrics.com">
+            </div>
+
+            <div class="control-group">
+                <label>Employee Photo</label>
+                <div class="file-upload-wrapper">
+                    <input type="file" id="input-image" accept="image/*">
+                    <span class="file-custom">Choose Photo...</span>
+                </div>
+            </div>
+
+            <!-- Image Editing Controls -->
+            <div class="control-group image-editing-section" id="image-editing-section" style="display: none;">
+                <label style="margin-bottom: 0.5rem; color: #0047AB;">Image Adjustments</label>
+
+                <div class="slider-control">
+                    <label for="brightness-slider">Brightness</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="brightness-slider" min="-50" max="50" value="0" step="1">
+                        <span id="brightness-value">0</span>
+                    </div>
+                </div>
+
+                <div class="slider-control">
+                    <label for="contrast-slider">Contrast</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="contrast-slider" min="0" max="200" value="100" step="1">
+                        <span id="contrast-value">100%</span>
+                    </div>
+                </div>
+
+                <div class="slider-control">
+                    <label for="saturation-slider">Saturation</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="saturation-slider" min="0" max="200" value="100" step="1">
+                        <span id="saturation-value">100%</span>
+                    </div>
+                </div>
+
+                <div class="slider-control">
+                    <label for="rotation-slider">Rotation</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="rotation-slider" min="-180" max="180" value="0" step="1">
+                        <span id="rotation-value">0°</span>
+                    </div>
+                </div>
+
+                <div class="slider-control">
+                    <label for="zoom-slider">Zoom</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="zoom-slider" min="1" max="3" value="1" step="0.01">
+                        <span id="zoom-value">1.0x</span>
+                    </div>
+                </div>
+
+                <div class="slider-control">
+                    <label for="offset-x-slider">X Position</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="offset-x-slider" min="-500" max="500" value="0" step="1">
+                        <span id="offset-x-value">0</span>
+                    </div>
+                </div>
+
+                <div class="slider-control">
+                    <label for="offset-y-slider">Y Position</label>
+                    <div class="slider-wrapper">
+                        <input type="range" id="offset-y-slider" min="-500" max="500" value="0" step="1">
+                        <span id="offset-y-value">0</span>
+                    </div>
+                </div>
+
+                <button id="reset-adjustments" class="reset-btn">Reset All</button>
+            </div>
+
+            <div class="actions">
+                <button id="btn-download">Download Image</button>
+            </div>
+        </aside>
+
+        <!-- Preview Panel -->
+        <main class="preview-area">
+            <div id="canvas-container">
+                <canvas id="image-canvas"></canvas>
+            </div>
+        </main>
+    </div>
+
+    <script src="welcome.js"></script>
+</body>
+
+</html>
