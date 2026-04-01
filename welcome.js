@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Draw Email
         ctx.font = '18px JetBrainsMono';
-        wrapTextReturnsY(ctx, "Her email id : " + state.email, textStartX, currentY, maxTextWidth, lineHeight);
+        wrapTextReturnsY(ctx, "Email id : " + state.email, textStartX, currentY, maxTextWidth, lineHeight);
     }
 
     // Function to update the view when controls change
